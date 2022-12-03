@@ -17,36 +17,12 @@ public class Main {
 
         // ********** main **********
 
-        // mean value in a specific location of a specific attribute
+        Calculate cal = new Calculate();
 
-        String location = "Sensor0";
-        String attr = "O3";
+        double meanValue = cal.meanValueLocationAttribute("Sensor0", "O3");
+        System.out.println(meanValue);
 
-        int counter = 0;
-        int sum = 0;
-        while (data.hasNext()) {
-            String[] columns = data.next().split(";");
-            if (columns[1].equals(location) && columns[2].equals(attr)) {
-                sum += Double.parseDouble(columns[3]);
-                counter++;
-            }
-        }
 
-        if (counter != 0) {
-            String unit = "";
-            String description = "";
-            boolean found = false;
-            while (attributes.hasNext() && !found) {
-                String[] columns = attributes.next().split(";");
-                if (columns[0].equals(attr)) {
-                    found = true;
-                    unit = columns[1];
-                    description = columns[2];
-                }
-            }
-            System.out.println("----------\nMean " + description + " (" + attr + ") in " + location + ": " + sum / counter + " " + unit + "\n----------");
-        }
-        else System.out.println("Not found.");
 
 
         // ********** close files **********
