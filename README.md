@@ -11,3 +11,8 @@
 1. discuss about UML
 2. search air quality standard, implement in code
 3. process large csv file, calculate mean value for sensor, attribute
+
+**Sprint 3(~ 05/12/2022)**
+
+1. add user input
+2. add option for various calculation result
