@@ -1,34 +1,17 @@
-import java.io.*;
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        Calculator cal = new Calculator();
 
-        // ********** open files **********
-        String sensorsPath = "./src/data/Sensors.csv";
-        Scanner sensors = new Scanner(new File(sensorsPath));
+        FileLoader fileLoader = new FileLoader();
+        Sensor sensor = fileLoader.getSensor("Sensor0");
+        Attribute attribute = fileLoader.getAttribute("O3");
 
-        String attributesPath = "./src/data/AttributeType.csv";
-        Scanner attributes = new Scanner(new File(attributesPath));
-
-        String dataPath = "./src/data/data.csv";
-        Scanner data = new Scanner(new File(dataPath));
-
-        // ********** main **********
-
-        Calculate cal = new Calculate();
-
-        double meanValue = cal.meanValueLocationAttribute("Sensor0", "O3");
-        System.out.println(meanValue);
-
-
-
-
-        // ********** close files **********
-        sensors.close();
-        attributes.close();
-        data.close();
-
+        if (sensor != null || attribute != null) {
+            double average = cal.getAverageBySensorAttribute(sensor.id, attribute.id);
+            System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") in " + sensor.id + ": " + average + " " + attribute.unit + "\n----------");
+        } else {
+            System.out.println("Wrong arguments. Please type again");
+        }
     }
 }
