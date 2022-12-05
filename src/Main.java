@@ -1,34 +1,30 @@
-import java.io.*;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        Calculator cal = new Calculator();
+        FileLoader fLoader = new FileLoader();
 
-        // ********** open files **********
-        String sensorsPath = "./src/data/Sensors.csv";
-        Scanner sensors = new Scanner(new File(sensorsPath));
+        Scanner scanner = new Scanner(System.in);
 
-        String attributesPath = "./src/data/AttributeType.csv";
-        Scanner attributes = new Scanner(new File(attributesPath));
+        System.out.println("Enter a location \nlatitude");
+        double latitude = scanner.nextDouble();
 
-        String dataPath = "./src/data/data.csv";
-        Scanner data = new Scanner(new File(dataPath));
+        System.out.println("longitude");
+        double longitude = scanner.nextDouble();
 
-        // ********** main **********
+        System.out.println("Enter a attribute");
+        String attributeId = scanner.next();
 
-        Calculate cal = new Calculate();
+        Sensor sensor = cal.getNearSensor(latitude, longitude, fLoader.sensors);
+        Attribute attribute = fLoader.getAttribute(attributeId);
 
-        double meanValue = cal.meanValueLocationAttribute("Sensor0", "O3");
-        System.out.println(meanValue);
-
-
-
-
-        // ********** close files **********
-        sensors.close();
-        attributes.close();
-        data.close();
-
+        if (sensor != null && attribute != null) {
+            double average = cal.getAverageBySensorAttribute(sensor.id, attribute.id);
+            System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") in " + sensor.id + ": " + average + " " + attribute.unit + "\n----------");
+        } else {
+            System.out.println("Wrong arguments.");
+        }
     }
 }
