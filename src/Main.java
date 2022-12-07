@@ -40,7 +40,35 @@ public class Main {
 
                 break;
             case 2:
-                // TODO
+                while (sensor == null) {
+                    System.out.println("Enter a location \nlatitude");
+                    double latitude = scanner.nextDouble();
+
+                    System.out.println("longitude");
+                    double longitude = scanner.nextDouble();
+
+                    sensor = cal.getNearSensor(latitude, longitude, fLoader.sensors);
+                    if (sensor == null) {
+                        System.out.println("Wrong arguments. \n Please type again.");
+                    }
+                }
+
+                System.out.println("\nEnter a date (integers expected) \nmonth");
+                int month = scanner.nextInt();
+
+                System.out.println("day");
+                int day = scanner.nextInt();
+
+                String date = cal.getDate(month, day);
+
+                System.out.println("\nNear sensor is " + sensor.id);
+                System.out.println("Data on " + date);
+
+                for (Attribute attribute : fLoader.attributes) {
+                    double average = cal.getAverageBySensorDay(sensor.id, attribute.id, date);
+                    System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") " + ": " + average + " " + attribute.unit + ", " + airQuality.getAirQuality(average));
+                }
+
                 break;
             case 3:
                 while (sensor == null) {
