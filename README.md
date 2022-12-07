@@ -1,6 +1,7 @@
 # IST-SOE Java Air Quality Project
 
 **participants** Àlex Esteban Rodríguez, Carlos Gracia Sanjuan, Jiwon Seol
+
 **tech stack** Java
 
 ---
