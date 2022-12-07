@@ -1,6 +1,10 @@
-# java_air_quality_project
+# IST-SOE Java Air Quality Project
+
+**participants** Àlex Esteban Rodríguez, Carlos Gracia Sanjuan, Jiwon Seol
+**tech stack** Java
 
 ---
+
 **Sprint 1 (~ 24/11/2022)**
 
 1. get to know about github, init git project
