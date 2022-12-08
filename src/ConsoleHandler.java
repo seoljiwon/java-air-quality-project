@@ -61,7 +61,7 @@ public class ConsoleHandler {
     public Attribute getAttribute(){
         Attribute attribute = null;
         while (attribute == null) {
-            System.out.println("Enter a attribute");
+            System.out.println("Enter a attribute {O3, SO2, NO2, PM10}");
             String attributeId = scanner.next();
 
             attribute = fLoader.getAttribute(attributeId);
