@@ -4,6 +4,9 @@
 
 **tech stack** Java
 
+**use case diagram**
+![UseCase](https://user-images.githubusercontent.com/91628072/206401023-22eb5cd5-20ed-4926-bcd0-8ed801d61304.png)
+
 ---
 
 **Sprint 1 (~ 24/11/2022)**
@@ -21,3 +24,8 @@
 
 1. add user input
 2. add option for various calculation result
+
+**Sprint 4(~ 08/12/2022)**
+
+1. check that code represents uml diagrams
+2. refactor code
