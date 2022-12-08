@@ -5,28 +5,6 @@ import java.util.*;
 import java.lang.*;
 
 public class Calculator {
-    public Sensor getNearSensor(double latitude, double longitude, List<Sensor> sensors) {
-        // calculates the near sensor for a specific location
-        Sensor nearSensor = null;
-        double minDist = 999999;
-        for (Sensor sensor : sensors) {
-            if ((latitude == sensor.latitude) && (longitude == sensor.longitude)) {
-                return sensor;
-            } else {
-                double theta = longitude - sensor.longitude;
-                double dist = Math.sin(Math.toRadians(latitude)) * Math.sin(Math.toRadians(sensor.latitude)) + Math.cos(Math.toRadians(latitude)) * Math.cos(Math.toRadians(sensor.latitude)) * Math.cos(Math.toRadians(theta));
-                dist = Math.acos(dist);
-                dist = Math.toDegrees(dist);
-                dist = dist * 60 * 1.1515;
-
-                if (dist < minDist) {
-                    minDist = dist;
-                    nearSensor = sensor;
-                }
-            }
-        }
-        return nearSensor;
-    }
 
     public double getAverageBySensorAttribute(String sensorId, String attributeId) throws FileNotFoundException {
         // calculates the mean value of a given attribute (chemical formula) for a specific location (sensor)
@@ -89,22 +67,5 @@ public class Calculator {
         data.close();
 
         return sum / counter;
-    }
-
-    String getDate(int month, int day) {
-        // returns the date in a correct format
-
-        String date;
-        if (month < 10) {
-            if (day < 10)
-                date = "2017-0" + Integer.toString(month) + "-0" + Integer.toString(day);
-            else date = "2017-0" + Integer.toString(month) + "-" + Integer.toString(day);
-        }
-        else {
-            if (day < 10)
-                date = "2017-" + Integer.toString(month) + "-0" + Integer.toString(day);
-            else date = "2017-" + Integer.toString(month) + "-" + Integer.toString(day);
-        }
-        return date;
     }
 }
