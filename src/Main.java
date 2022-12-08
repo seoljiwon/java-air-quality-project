@@ -1,15 +1,13 @@
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) throws Exception {
-        Calculator cal = new Calculator();
-        FileLoader fLoader = new FileLoader();
-        AirQuality airQuality = new AirQuality();
+
+        ConsoleHandler consoleHandler = new ConsoleHandler();
 
         Scanner scanner = new Scanner(System.in);
 
-        Sensor sensor = null;
+        Sensor sensor;
 
         System.out.println("Enter option");
         System.out.println("1. Get air quality of all attributes for a specific location");
@@ -19,88 +17,28 @@ public class Main {
         int option = scanner.nextInt();
         switch (option) {
             case 1:
-                while (sensor == null) {
-                    System.out.println("Enter a location \nlatitude");
-                    double latitude = scanner.nextDouble();
+                sensor = consoleHandler.getSensor();
 
-                    System.out.println("longitude");
-                    double longitude = scanner.nextDouble();
-
-                    sensor = cal.getNearSensor(latitude, longitude, fLoader.sensors);
-                    if (sensor == null) {
-                        System.out.println("Wrong arguments. \n Please type again.");
-                    }
-                }
                 System.out.println("\nNear sensor is " + sensor.id);
 
-                for (Attribute attribute : fLoader.attributes) {
-                    double average = cal.getAverageBySensorAttribute(sensor.id, attribute.id);
-                    System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") " + ": " + average + " " + attribute.unit + ", " + airQuality.getAirQuality(average));
-                }
-
+                consoleHandler.printAllAttribute(sensor);
                 break;
             case 2:
-                while (sensor == null) {
-                    System.out.println("Enter a location \nlatitude");
-                    double latitude = scanner.nextDouble();
-
-                    System.out.println("longitude");
-                    double longitude = scanner.nextDouble();
-
-                    sensor = cal.getNearSensor(latitude, longitude, fLoader.sensors);
-                    if (sensor == null) {
-                        System.out.println("Wrong arguments. \n Please type again.");
-                    }
-                }
-
-                System.out.println("\nEnter a date (integers expected) \nmonth");
-                int month = scanner.nextInt();
-
-                System.out.println("day");
-                int day = scanner.nextInt();
-
-                String date = cal.getDate(month, day);
+                sensor = consoleHandler.getSensor();
+                String date = consoleHandler.getDate();
 
                 System.out.println("\nNear sensor is " + sensor.id);
                 System.out.println("Data on " + date);
 
-                for (Attribute attribute : fLoader.attributes) {
-                    double average = cal.getAverageBySensorDay(sensor.id, attribute.id, date);
-                    System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") " + ": " + average + " " + attribute.unit + ", " + airQuality.getAirQuality(average));
-                }
-
+                consoleHandler.printAllAttribute(sensor);
                 break;
             case 3:
-                while (sensor == null) {
-                    System.out.println("Enter a location \nlatitude");
-                    double latitude = scanner.nextDouble();
-
-                    System.out.println("longitude");
-                    double longitude = scanner.nextDouble();
-
-                    sensor = cal.getNearSensor(latitude, longitude, fLoader.sensors);
-                    if (sensor == null) {
-                        System.out.println("Wrong arguments. \n Please type again.");
-                    }
-                }
-
-                Attribute attribute = null;
-                while (attribute == null) {
-                    System.out.println("Enter a attribute");
-                    String attributeId = scanner.next();
-
-                    attribute = fLoader.getAttribute(attributeId);
-
-                    if (attribute == null) {
-                        System.out.println("Wrong arguments. \nPlease type again. \n");
-                    }
-                }
+                sensor = consoleHandler.getSensor();
+                Attribute attribute = consoleHandler.getAttribute();
 
                 System.out.println("Near sensor is " + sensor.id);
 
-                double average = cal.getAverageBySensorAttribute(sensor.id, attribute.id);
-                System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") in " + sensor.id + ": " + average + " " + attribute.unit + ", " + airQuality.getAirQuality(average) + "\n");
-
+                consoleHandler.printAttribute(sensor, attribute);
                 break;
             default:
                 System.out.println("Wrong option.");
