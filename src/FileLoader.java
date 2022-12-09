@@ -17,15 +17,6 @@ public class FileLoader {
         return null;
     }
 
-    public Sensor getSensor(String id) {
-        for (Sensor sensor : sensors) {
-            if (sensor.id.equalsIgnoreCase(id)) {
-                return sensor;
-            }
-        }
-        return null;
-    }
-
     public void readAttributeFile() throws FileNotFoundException {
         String attributeFilePath = "./src/data/AttributeType.csv";
         Scanner attributeFile = new Scanner(new File(attributeFilePath));

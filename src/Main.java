@@ -21,7 +21,7 @@ public class Main {
 
                 System.out.println("\nNear sensor is " + sensor.id);
 
-                consoleHandler.printAllAttribute(sensor);
+                consoleHandler.printAllAttribute(sensor, null);
                 break;
             case 2:
                 sensor = consoleHandler.getSensor();
@@ -30,7 +30,7 @@ public class Main {
                 System.out.println("\nNear sensor is " + sensor.id);
                 System.out.println("Data on " + date);
 
-                consoleHandler.printAllAttribute(sensor);
+                consoleHandler.printAllAttribute(sensor, date);
                 break;
             case 3:
                 sensor = consoleHandler.getSensor();
@@ -38,7 +38,7 @@ public class Main {
 
                 System.out.println("Near sensor is " + sensor.id);
 
-                consoleHandler.printAttribute(sensor, attribute);
+                consoleHandler.printAttribute(sensor, attribute, null);
                 break;
             default:
                 System.out.println("Wrong option.");
