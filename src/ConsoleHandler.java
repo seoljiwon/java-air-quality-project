@@ -90,14 +90,14 @@ public class ConsoleHandler {
         return sensor;
     }
 
-    public void printAllAttribute (Sensor sensor) throws Exception{
+    public void printAllAttribute (Sensor sensor, String date) throws Exception{
         for (Attribute attribute : fLoader.attributes) {
-            printAttribute(sensor, attribute);
+            printAttribute(sensor, attribute, date);
         }
     }
 
-    public void printAttribute (Sensor sensor, Attribute attribute) throws Exception{
-        double average = cal.getAverageBySensorAttribute(sensor.id, attribute.id);
+    public void printAttribute (Sensor sensor, Attribute attribute, String date) throws Exception{
+        double average = cal.getAverageBySensorDay(sensor.id, attribute.id, date);
         System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") " + ": " + average + " " + attribute.unit + ", " + airQuality.getAirQuality(average));
     }
 }
