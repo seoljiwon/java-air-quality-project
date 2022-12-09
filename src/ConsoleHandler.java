@@ -37,28 +37,37 @@ public class ConsoleHandler {
     public String getDate() {
         // returns the date in a correct format
 
-        System.out.println("\nEnter a date (integers expected) \nmonth");
-        int month = scanner.nextInt();
+        System.out.println("Enter a date (integers expected)");
+        int month = 0, day = 0;
 
-        System.out.println("day");
-        int day = scanner.nextInt();
+        while (month < 1 || month > 12) {
+            System.out.println("month");
+            month = scanner.nextInt();
 
-        String date;
-
-        if (month < 10) {
-            if (day < 10)
-                date = "2017-0" + Integer.toString(month) + "-0" + Integer.toString(day);
-            else date = "2017-0" + Integer.toString(month) + "-" + Integer.toString(day);
+            if (month < 1 || month > 12) {
+                System.out.println("Wrong arguments.\nPlease type again.\n");
+            }
         }
-        else {
-            if (day < 10)
-                date = "2017-" + Integer.toString(month) + "-0" + Integer.toString(day);
-            else date = "2017-" + Integer.toString(month) + "-" + Integer.toString(day);
+
+        while (day < 1 || day > 31) {
+            System.out.println("day");
+            day = scanner.nextInt();
+
+            if (day < 1 || day > 31) {
+                System.out.println("Wrong arguments.\nPlease type again.\n");
+            }
         }
+
+        // First timestamp: 2017-01-01T00:01:20.6090000
+        // Last timestamp:  2017-12-30T23:30:10.9830000
+
+        String date = month < 10 ? "2017-0" + month : "2017-" + month;
+        date += day < 10 ? "-0" + day : "-" + day;
+
         return date;
     }
 
-    public Attribute getAttribute(){
+    public Attribute getAttribute() {
         Attribute attribute = null;
         while (attribute == null) {
             System.out.println("Enter a attribute {O3, SO2, NO2, PM10}");
@@ -67,13 +76,13 @@ public class ConsoleHandler {
             attribute = fLoader.getAttribute(attributeId);
 
             if (attribute == null) {
-                System.out.println("Wrong arguments. \nPlease type again. \n");
+                System.out.println("Wrong arguments.\nPlease type again.\n");
             }
         }
         return attribute;
     }
 
-    public Sensor getSensor(){
+    public Sensor getSensor() {
         Sensor sensor = null;
         while (sensor == null) {
             System.out.println("Enter a location \nlatitude");
@@ -84,20 +93,20 @@ public class ConsoleHandler {
 
             sensor = getNearSensor(latitude, longitude, fLoader.sensors);
             if (sensor == null) {
-                System.out.println("Wrong arguments. \n Please type again.");
+                System.out.println("Wrong arguments.\nPlease type again.\n");
             }
         }
         return sensor;
     }
 
-    public void printAllAttribute (Sensor sensor, String date) throws Exception{
+    public void printAllAttribute(Sensor sensor, String date) throws Exception {
         for (Attribute attribute : fLoader.attributes) {
             printAttribute(sensor, attribute, date);
         }
     }
 
-    public void printAttribute (Sensor sensor, Attribute attribute, String date) throws Exception{
-        double average = cal.getAverageBySensorDay(sensor.id, attribute.id, date);
+    public void printAttribute(Sensor sensor, Attribute attribute, String date) throws Exception {
+        double average = cal.getAverageBySensorDate(sensor.id, attribute.id, date);
         System.out.println("----------\nAverage " + attribute.id + " (" + attribute.description + ") " + ": " + average + " " + attribute.unit + ", " + airQuality.getAirQuality(average));
     }
 }
