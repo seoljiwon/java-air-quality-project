@@ -5,7 +5,10 @@
 **tech stack** Java
 
 **use case diagram**
-![UseCase](https://user-images.githubusercontent.com/91628072/206401023-22eb5cd5-20ed-4926-bcd0-8ed801d61304.png)
+![UseCase](https://user-images.githubusercontent.com/91628072/206869663-30cf4a0d-7ac5-47a1-bbe1-c471b2ee22b1.png)
+
+**class diagram**
+![Class](https://user-images.githubusercontent.com/91628072/206869669-6c991860-3163-48bb-9952-915d918b2d37.PNG)
 
 ---
 
