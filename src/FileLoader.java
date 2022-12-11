@@ -18,7 +18,7 @@ public class FileLoader {
     }
 
     public void readAttributeFile() throws FileNotFoundException {
-        String attributeFilePath = "./src/data/AttributeType.csv";
+        String attributeFilePath = "./data/AttributeType.csv";
         Scanner attributeFile = new Scanner(new File(attributeFilePath));
 
         attributeFile.nextLine();
@@ -35,7 +35,7 @@ public class FileLoader {
     }
 
     public void readSensorFile() throws FileNotFoundException {
-        String sensorFilePath = "./src/data/Sensors.csv";
+        String sensorFilePath = "./data/Sensors.csv";
         Scanner sensorFile = new Scanner(new File(sensorFilePath));
 
         sensorFile.nextLine();

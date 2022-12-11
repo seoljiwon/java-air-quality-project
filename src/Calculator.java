@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.*;
 import java.lang.*;
 
 public class Calculator {
@@ -11,7 +10,7 @@ public class Calculator {
         // on a specific day, optional
 
         // open files
-        String dataPath = "./src/data/data.csv";
+        String dataPath = "./data/data.csv";
         Scanner data = new Scanner(new File(dataPath));
 
         // calculate value
