@@ -92,7 +92,7 @@ We used UML(Unified Modeling Language) to facilitate our work.
 </div>
 </details>
 <details>
-<summary>Class Diagram</summary>
+<summary>Sequence Diagram</summary>
 <div markdown="1">       
 <br/>
 <img width="600" src="https://user-images.githubusercontent.com/119570921/207128990-673efe5f-9657-48c7-8db9-ea1458fcc75a.jpg">
