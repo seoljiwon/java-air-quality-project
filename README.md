@@ -67,6 +67,10 @@ We have achieved results by dividing our goals into small pieces every week, sha
 1. check that code represents uml diagrams
 2. refactor code
 
+**Sprint 4(~ 14/12/2022)**
+
+1. ensure code quality with JUnit test
+
 </div>
 </details>
 
