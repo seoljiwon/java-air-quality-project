@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+
 public class AirQuality {
     int good = 50;
     int satisfactory = 100;
@@ -6,21 +8,21 @@ public class AirQuality {
     int veryPoor = 400;
     int severe = 500;
 
-    public String getAirQuality(double value) throws Exception {
+    public String getAirQuality(double value) {
         if (value >= 0 && value <= good) {
             return "good";
-        } else if (value <= satisfactory) {
+        } else if (value > good && value <= satisfactory) {
             return "satisfactory";
-        } else if (value <= moderate) {
+        } else if (value > satisfactory && value <= moderate) {
             return "moderate";
-        } else if (value <= poor) {
+        } else if (value > moderate && value <= poor) {
             return "poor";
-        } else if (value <= veryPoor) {
+        } else if (value > poor && value <= veryPoor) {
             return "veryPoor";
-        } else if (value <= severe) {
+        } else if (value > veryPoor && value <= severe) {
             return "severe";
         } else {
-            throw new Exception("out of value");
+            throw new InputMismatchException("out of value");
         }
     }
 }
